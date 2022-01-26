@@ -1,29 +1,49 @@
 import React, { Component, Fragment } from "react";
 
 class Item extends Component {
-  //   handleEdit = (id) => {
-  //     let input_item = document.querySelector(".input");
-  //     // let element = document.getElementById("element");
-  //     // document.getElementById("li-element").innerHTML=input_item
+  state = {
+    isEdit: false,
+  };
 
-  //     input_item.style.display = "block";
-  //     input_item.value = this.props.course;
-  // }
-  render() {
+  istoggle = () => {
+    let { isEdit } = this.state;
+    this.setState({
+      isEdit: !isEdit,
+    });
+  };
+  renderForm = () => {
     return (
-      <Fragment>
+      <form>
+        <input type="text" className="style-input input" value={this.props.course}/>
+        <button>Update Course</button>
+      </form>
+    );
+  };
+
+  renderCourse = () => {
+    return (
+      <div>
         <li id="element">{this.props.course}</li>
-        {/* <input type="text" className="style-input input" /> */}
 
         <div className="btns-style">
-          <button className="style-btn">Edit Course</button>
+          <button className="style-btn" onClick={this.istoggle}>
+            Edit Course
+          </button>
           <button
             className="style-btn"
-            onClick={()=>this.props.handleDelete(this.props.course)}
+            onClick={() => this.props.handleDelete(this.props.course)}
           >
             Delete Course
           </button>
         </div>
+      </div>
+    );
+  };
+
+  render() {
+    return (
+      <Fragment>
+        {this.state.isEdit ? this.renderForm() : this.renderCourse()}
       </Fragment>
     );
   }

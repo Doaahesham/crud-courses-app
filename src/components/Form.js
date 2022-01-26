@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ListItem from "./ListItem";
-
 class Form extends Component {
   state = {
     input: "",
@@ -26,6 +25,14 @@ class Form extends Component {
     });
     console.log(this.state.courses);
   };
+  // handleEdit = (item_course) => {
+  //   var input_text=document.querySelector(".input")
+  //   let co = this.state.courses.filter((course) => course === item_course);
+  //   // return co.join();
+  //   input_text.style.display="block"
+  //   input_text.value=co.join()
+  //   console.log("lkjhgfd");
+  // };
 
   render() {
     return (

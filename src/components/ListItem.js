@@ -9,7 +9,7 @@ class ListItem extends Component {
         {console.log(this.props.courses)}
         <ul>
         {this.props.courses.map((course, id) => (
-          <Item course={course} key={id} courses={this.props.courses} handleDelete={this.props.handleDelete}/>
+          <Item course={course} key={id} courses={this.props.courses} handleDelete={this.props.handleDelete} />
         ))}
         </ul>
       </div>
