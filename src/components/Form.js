@@ -25,14 +25,25 @@ class Form extends Component {
     });
     console.log(this.state.courses);
   };
-  // handleEdit = (item_course) => {
-  //   var input_text=document.querySelector(".input")
-  //   let co = this.state.courses.filter((course) => course === item_course);
-  //   // return co.join();
-  //   input_text.style.display="block"
-  //   input_text.value=co.join()
-  //   console.log("lkjhgfd");
+
+  // handleUpdate = (item, newVal) => {
+  //   let courses = this.state.courses;
+  //   courses[item] = newVal;
+
+  //   this.setState({
+  //     courses,
+  //   });
+  //   console.log(this.state.courses);
   // };
+  //update Course
+  updateCourse = (item_course, newVal) => {
+    let index = this.state.courses.map((course) => course).indexOf(item_course);
+    if (index !== -1) {
+      let copied = [...this.state.courses];
+      copied[index] = newVal;
+      this.setState({ courses: copied });
+    }
+  };
 
   render() {
     return (
@@ -51,6 +62,9 @@ class Form extends Component {
         <ListItem
           courses={this.state.courses}
           handleDelete={(item_course) => this.handleDelete(item_course)}
+          updateCourse={(item_course, newVal) =>
+            this.updateCourse(item_course, newVal)
+          }
         />
       </div>
     );

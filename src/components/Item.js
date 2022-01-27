@@ -3,6 +3,7 @@ import React, { Component, Fragment } from "react";
 class Item extends Component {
   state = {
     isEdit: false,
+    inputVal: "",
   };
 
   istoggle = () => {
@@ -11,14 +12,40 @@ class Item extends Component {
       isEdit: !isEdit,
     });
   };
-  renderForm = () => {
-    return (
-      <form>
-        <input type="text" className="style-input input" value={this.props.course}/>
-        <button>Update Course</button>
-      </form>
-    );
+
+  handleChange = (e) => {
+    this.setState({ inputVal: e.target.value });
+    console.log(this.state.inputVal);
   };
+
+  // handleUpdate=(e)=>{
+  //  e.preventDefault()
+  //   this.props.updateCourse(this.props.course,this.state.inputVal)
+  //   this.props.renderCourse()
+  // }
+
+  // handleUpdateCourse =(e)=>{
+  // e.preventDefault()
+  // this.props.handleUpdate(this.props.course,this.input.newValue)
+  // this.istoggle()
+  // }
+
+  // renderForm = () => {
+  //   return (
+  //     <form>
+  //       <input
+  //         // ref={(v)=>{this.input=v}}
+  //         type="text"
+  //         className="style-input input"
+  //         defaultValue={this.props.course}
+  //         onChange={(e) => {
+  //           this.handleChange(e);
+  //         }}
+  //       />
+  //       <button onClick={(e) => this.handleUpdate(e)}>Update Course</button>
+  //     </form>
+  //   );
+  // };
 
   renderCourse = () => {
     return (
@@ -39,6 +66,32 @@ class Item extends Component {
       </div>
     );
   };
+  
+  
+  handleUpdate = (e) => {
+    e.preventDefault();
+    this.props.updateCourse(this.props.course, this.state.inputVal);
+    this.renderCourse();
+    this.istoggle();
+  };
+
+    renderForm = () => {
+    return (
+      <form>
+        <input
+          // ref={(v)=>{this.input=v}}
+          type="text"
+          className="style-input input"
+          defaultValue={this.props.course}
+          onChange={(e) => {
+            this.handleChange(e);
+          }}
+        />
+        <button onClick={(e) => this.handleUpdate(e)}>Update Course</button>
+      </form>
+    );
+  };
+
 
   render() {
     return (

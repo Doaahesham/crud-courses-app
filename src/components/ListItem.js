@@ -8,9 +8,15 @@ class ListItem extends Component {
       <div className="list-style">
         {console.log(this.props.courses)}
         <ul>
-        {this.props.courses.map((course, id) => (
-          <Item course={course} key={id} courses={this.props.courses} handleDelete={this.props.handleDelete} />
-        ))}
+          {this.props.courses.map((course, id) => (
+            <Item
+              course={course}
+              key={id}
+              courses={this.props.courses}
+              handleDelete={this.props.handleDelete}
+              updateCourse={this.props.updateCourse}
+            />
+          ))}
         </ul>
       </div>
     );
